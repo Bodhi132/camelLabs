@@ -7,14 +7,22 @@ import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader.js";
 
 const CAMEL_MODEL_PATH = "/models/camel%20(2).glb";
 
-function CamelModel() {
+function CamelModel({ onLoaded }: { onLoaded?: () => void }) {
   const groupRef = useRef<THREE.Group>(null);
+  const [ready, setReady] = useState(false);
 
   // Load the GLTF and animations
   const { scene, animations } = useGLTF(CAMEL_MODEL_PATH);
 
   // Bind animations directly to the 'scene' so the skeleton doesn't break
   const { actions, names } = useAnimations(animations, scene);
+
+  // Hide the scene immediately so it doesn't flash at original scale
+  useEffect(() => {
+    if (scene) {
+      scene.visible = false;
+    }
+  }, [scene]);
 
   useEffect(() => {
     if (!scene) return;
@@ -24,20 +32,27 @@ function CamelModel() {
     const center = box.getCenter(new THREE.Vector3());
     const size = box.getSize(new THREE.Vector3());
     const maxDim = Math.max(size.x, size.y, size.z);
-    const scale = 4 / maxDim;
+    const scale = 3.9 / maxDim;
 
     scene.position.sub(center);
     scene.scale.setScalar(scale);
+
+    // Now that scaling is applied, make it visible
+    scene.visible = true;
+    setReady(true);
 
     // Play the very first animation found in the GLB file
     if (names.length > 0) {
       console.log("Successfully playing animation:", names[0]);
       actions[names[0]]?.reset().fadeIn(0.5).play();
     }
-  }, [scene, actions, names]);
+
+    // Signal that the 3D model has finished loading
+    onLoaded?.();
+  }, [scene, actions, names, onLoaded]);
 
   useFrame(({ clock }) => {
-    if (groupRef.current) {
+    if (groupRef.current && ready) {
       // Add your downward offset here!
       // Change -1.5 to whatever number looks best (e.g., -1, -2, -0.5)
       const baseHeight = -1;
@@ -50,7 +65,7 @@ function CamelModel() {
   return (
     // Adjust rotation here if it's still facing the wrong way
     // e.g., Math.PI (180 deg) or -Math.PI / 2 (-90 deg)
-    <group ref={groupRef} rotation={[0, Math.PI / 2, 0]} position={[2, 0, 0]}>
+    <group ref={groupRef} rotation={[0, Math.PI / 2, 0]} position={[2, 0, 0]} visible={ready}>
       <primitive object={scene} />
     </group>
   );
@@ -221,7 +236,7 @@ function FloatingParticles() {
   );
 }
 
-function RotatingScene({ scrollProgress }: { scrollProgress: number }) {
+function RotatingScene({ scrollProgress, onLoaded }: { scrollProgress: number; onLoaded?: () => void }) {
   const groupRef = useRef<THREE.Group>(null);
 
   useFrame(() => {
@@ -232,7 +247,7 @@ function RotatingScene({ scrollProgress }: { scrollProgress: number }) {
 
   return (
     <group ref={groupRef}>
-      <CamelModel />
+      <CamelModel onLoaded={onLoaded} />
       {/* <Flowers /> */}
       <FloatingParticles />
     </group>
@@ -241,8 +256,10 @@ function RotatingScene({ scrollProgress }: { scrollProgress: number }) {
 
 export default function CamelScene({
   scrollProgress,
+  onLoaded,
 }: {
   scrollProgress: number;
+  onLoaded?: () => void;
 }) {
   return (
     <div
@@ -258,7 +275,7 @@ export default function CamelScene({
           color="#ffd4e8"
         />
         <Environment preset="studio" />
-        <RotatingScene scrollProgress={scrollProgress} />
+        <RotatingScene scrollProgress={scrollProgress} onLoaded={onLoaded} />
       </Canvas>
     </div>
   );

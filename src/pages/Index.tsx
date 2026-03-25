@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import ServicesSection from "@/components/ServicesSection";
@@ -8,9 +8,15 @@ import CustomCursor from "@/components/CustomCursor";
 import ScrollProgress from "@/components/ScrollProgress";
 import Particles from "@/components/Particles";
 import CamelScene from "@/components/CamelScene";
+import LoadingScreen from "@/components/LoadingScreen";
 
 const Index = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  const handleLoaded = useCallback(() => {
+    setIsLoaded(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,6 +31,9 @@ const Index = () => {
 
   return (
     <div className="relative bg-background min-h-screen" style={{ cursor: "none" }}>
+      {/* Loading Screen */}
+      <LoadingScreen isLoaded={isLoaded} />
+
       {/* Noise overlay */}
       <div className="noise-overlay" />
 
@@ -38,7 +47,7 @@ const Index = () => {
       <Particles />
 
       {/* 3D Scene */}
-      <CamelScene scrollProgress={scrollProgress} />
+      <CamelScene scrollProgress={scrollProgress} onLoaded={handleLoaded} />
 
       {/* Content */}
       <HeroSection />
