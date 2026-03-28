@@ -8,6 +8,8 @@ const team = [
     role: "Developer",
     image: "/Profile/Bodhi.jpeg",
     objectPosition: "top",
+    objectFit: "cover" as const,
+    imageScale: 1,
     bio: "Full-stack developer who brings ideas to life with clean code, performant systems and interactive 3D experiences.",
     links: [
       {
@@ -26,7 +28,9 @@ const team = [
     name: "Prabir Chakravarty",
     role: "UI/UX Designer",
     image: "/Profile/Prabir.jpeg",
-    objectPosition: "center",
+    objectPosition: "top center",
+    objectFit: "cover" as const,
+    imageScale: 0.1,
     bio: "Design thinker crafting intuitive interfaces and visual systems that unite beauty with purpose across every screen.",
     links: [
       {
@@ -159,8 +163,13 @@ function TeamCard({
           <motion.img
             src={member.image}
             alt={member.name}
-            className="w-full h-full object-cover"
-            style={{ objectPosition: member.objectPosition }}
+            className="w-full h-full"
+            style={{
+              objectFit: "cover",
+              objectPosition: member.objectPosition,
+              transform: `scale(${member.imageScale})`,
+              transformOrigin: "top center",
+            }}
             variants={imageVariants}
           />
 
