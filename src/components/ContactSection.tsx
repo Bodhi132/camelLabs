@@ -5,6 +5,13 @@ export default function ContactSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
+  // Add your specific profile paths to the ends of these URLs
+  const socialLinks = [
+    { name: "Linkedin", url: "https://www.linkedin.com/in/camel-lab-a049543ba" },
+    { name: "Instagram", url: "https://www.instagram.com/hellocamellab/" },
+    { name: "X", url: "https://x.com/" }
+  ];
+
   return (
     <section ref={ref} className="relative z-10 section-padding min-h-screen flex items-center">
       <div className="max-w-6xl mx-auto w-full">
@@ -32,19 +39,21 @@ export default function ContactSection() {
           <div>
             <p className="text-muted-foreground text-sm uppercase tracking-[0.2em] mb-3">Email</p>
             <a href="mailto:hello@camellab.studio" className="text-foreground text-lg md:text-xl font-body hover:text-primary transition-colors duration-300">
-              hello@camellab.studio
+              hellocamellab@gmail.com
             </a>
           </div>
           <div>
             <p className="text-muted-foreground text-sm uppercase tracking-[0.2em] mb-3">Social</p>
             <div className="flex gap-6">
-              {["Instagram", "Dribbble", "Twitter"].map((social) => (
+              {socialLinks.map((social) => (
                 <a
-                  key={social}
-                  href="#"
+                  key={social.name}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-foreground font-body hover:text-primary transition-colors duration-300"
                 >
-                  {social}
+                  {social.name}
                 </a>
               ))}
             </div>

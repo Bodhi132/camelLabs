@@ -11,49 +11,35 @@ const projects = [
     category: "Web Platform",
     year: "2024",
     link: "https://findmyrentals.ca/home",
-    image: "https://image.thum.io/get/width/800/crop/600/https://findmyrentals.ca/home",
+    image: "/Projects/Fmr.jpeg",
   },
   {
     title: "Finance Flow",
     category: "Web Application",
     year: "2024",
     link: "https://finance-flow-nu.vercel.app/",
-    image: "https://image.thum.io/get/width/800/crop/600/https://finance-flow-nu.vercel.app/",
+    image: "/Projects/Finance-Flow.jpeg",
   },
   {
-    title: "Sitarait",
+    title: "Sitara IT",
     category: "Corporate Website",
     year: "2024",
     link: "https://www.sitarait.com/",
-    image: "https://image.thum.io/get/width/800/crop/600/https://www.sitarait.com/",
+    image: "/Projects/Sitara.jpeg",
   },
   {
-    title: "Luxe Automotive",
-    category: "3D / Web",
+    title: "Millgate",
+    category: "Web / Strategy",
     year: "2024",
     link: "#",
-    image: "",
+    image: "/Projects/Millgate.jpeg",
   },
   {
-    title: "Noir Fashion",
+    title: "Sayelworkz",
     category: "Brand / Digital",
     year: "2024",
     link: "#",
-    image: "",
-  },
-  {
-    title: "Aether Sound",
-    category: "Motion / Interactive",
-    year: "2023",
-    link: "#",
-    image: "",
-  },
-  {
-    title: "Vertex Labs",
-    category: "Web / Strategy",
-    year: "2023",
-    link: "#",
-    image: "",
+    image: "/Projects/sayelworkz.jpeg",
   },
 ];
 
@@ -94,6 +80,7 @@ export default function WorkSection() {
 
   return (
     <section
+      id="work"
       ref={sectionRef}
       className="relative z-10 h-screen overflow-hidden"
     >

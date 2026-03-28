@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import ServicesSection from "@/components/ServicesSection";
 import WorkSection from "@/components/WorkSection";
+import TeamSection from "@/components/TeamSection";
 import ContactSection from "@/components/ContactSection";
 import CustomCursor from "@/components/CustomCursor";
 import ScrollProgress from "@/components/ScrollProgress";
@@ -54,6 +55,7 @@ const Index = () => {
       <AboutSection />
       <ServicesSection />
       <WorkSection />
+      <TeamSection />
       <ContactSection />
     </div>
   );
