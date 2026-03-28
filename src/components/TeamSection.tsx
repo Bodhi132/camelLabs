@@ -36,8 +36,13 @@ const team = [
       },
       {
         label: "Portfolio",
-        href: "https://prabirchakravarty.com/",
+        href: "https://jade-cucurucho-edb56f.netlify.app/",
         icon: Globe,
+      },
+      {
+        label: "GitHub",
+        href: "https://github.com/prabirchakravarty90-hue",
+        icon: Github,
       },
     ],
   },
