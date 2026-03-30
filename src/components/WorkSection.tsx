@@ -14,6 +14,13 @@ const projects = [
     image: "/Projects/Fmr.jpeg",
   },
   {
+    title: "Eazyhai",
+    category: "Web Platform",
+    year: "2024",
+    link: "https://www.eazyhai.com/",
+    image: "/Projects/Eazyhai.jpeg",
+  },
+  {
     title: "Finance Flow",
     category: "Web Application",
     year: "2024",
@@ -31,14 +38,14 @@ const projects = [
     title: "Millgate",
     category: "Web / Strategy",
     year: "2024",
-    link: "#",
+    link: "https://www.figma.com/design/x0lIG6sjxhHsfiqovDCIgd/Mill-Gate?node-id=1050-8989&t=LjSUUg3ywhRyy7Sr-1",
     image: "/Projects/Millgate.jpeg",
   },
   {
     title: "Sayelworkz",
     category: "Brand / Digital",
     year: "2024",
-    link: "#",
+    link: "https://www.figma.com/design/agAD6UPICE617dwfy63TOz/Sayelzworkz-new?node-id=4016-103224&t=E0dAVuVPNQV07XIL-1",
     image: "/Projects/sayelworkz.jpeg",
   },
 ];
