@@ -1,5 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 
 export default function ContactSection() {
   const ref = useRef(null);
@@ -69,9 +70,14 @@ export default function ContactSection() {
           <p className="text-muted-foreground text-sm font-body">
             © 2024 Camellab. All rights reserved.
           </p>
-          <p className="text-muted-foreground text-sm font-body">
-            Crafted with precision
-          </p>
+          <div className="flex items-center gap-6">
+            <Link to="/privacy-policy" className="text-muted-foreground text-sm font-body hover:text-primary transition-colors">
+              Privacy Policy
+            </Link>
+            <p className="text-muted-foreground text-sm font-body">
+              Crafted with precision
+            </p>
+          </div>
         </motion.div>
       </div>
     </section>
